@@ -1,0 +1,52 @@
+@layout("/layout/_form.html",{js:["/assets/modular/business/car/car_add.js"]}){
+
+<form class="layui-form" id="carForm" lay-filter="carForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input name="carId" type="hidden"/>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">车辆名称</label>
+                        <div class="layui-input-block">
+                            <input name="carName" placeholder="请输入车辆名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">车辆类型</label>
+                        <div class="layui-input-block">
+                            <select id="carType" name="carType">
+                                <option value="1">轿车</option>
+                                <option value="2">货车</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">车辆颜色</label>
+                        <div class="layui-input-block">
+                            <input name="carColor" placeholder="请输入车辆颜色" type="text" class="layui-input" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">车辆价格</label>
+                        <div class="layui-input-block">
+                            <input name="carPrice" placeholder="请输入车辆价格" type="text" class="layui-input" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">车辆制造商</label>
+                        <div class="layui-input-block">
+                            <input name="manufacturer" placeholder="请输入车辆制造商" type="text" class="layui-input" autocomplete="off"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+@}
