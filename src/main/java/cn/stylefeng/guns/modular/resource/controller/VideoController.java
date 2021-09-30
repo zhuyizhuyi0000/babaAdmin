@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.resource.controller;
 
 import cn.stylefeng.guns.modular.resource.pojo.VideoRequest;
+import cn.stylefeng.guns.modular.resource.service.TagLinkVideoService;
 import cn.stylefeng.guns.modular.resource.service.VideoService;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
@@ -21,25 +22,27 @@ import javax.annotation.Resource;
 public class VideoController {
     @Resource
     private VideoService videoService;
+    private TagLinkVideoService tagLinkVideoService;
 
     //添加
     @PostResource(name = "添加视频",path = "/video/add")
     public ResponseData add(@RequestBody @Validated(VideoRequest.add.class) VideoRequest videoRequest){
-        videoService.add(videoRequest);
+        Long id = videoService.add(videoRequest);
+//        System.out.println(id);
         return new SuccessResponseData();
     }
 
     /** *删除   */
     @PostResource(name = "删除视频",path = "/video/delete")
     public ResponseData delete(@RequestBody @Validated(VideoRequest.delete.class) VideoRequest videoRequest){
-        videoService.del(videoRequest);
+        Long id = videoService.del(videoRequest);
         return new SuccessResponseData();
     }
 
     /** *编辑   */
     @PostResource(name = "编辑视频", path = "/video/edit")
     public ResponseData edit(@RequestBody @Validated(VideoRequest.edit.class) VideoRequest videoRequest) {
-        videoService.edit(videoRequest);
+        Long id = videoService.edit(videoRequest);
         return new SuccessResponseData();
     }
 

@@ -5,12 +5,12 @@ import cn.stylefeng.roses.kernel.rule.constants.RuleConstants;
 import cn.stylefeng.roses.kernel.rule.exception.AbstractExceptionEnum;
 import lombok.Getter;
 
-/** *视频异常枚举   */
+/** *资源异常枚举   */
 @Getter
 public enum ResourceExceptionEnum implements AbstractExceptionEnum {
 
-    /** *视频不存在   */
-    VIDEO_NOT_EXISTED(RuleConstants.USER_OPERATION_ERROR_TYPE_CODE + ProjectConstants.BUSINESS_EXCEPTION_STEP_CODE + "01", "视频不存在");
+    /** *资源不存在   */
+    VIDEO_NOT_EXISTED(RuleConstants.USER_OPERATION_ERROR_TYPE_CODE + ProjectConstants.BUSINESS_EXCEPTION_STEP_CODE + "01", "资源不存在");
 
     /**
      * 错误编码

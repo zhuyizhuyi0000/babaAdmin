@@ -9,13 +9,13 @@ import java.util.List;
 
 public interface VideoService extends IService<Video> {
     /** *添加视频   */
-    void add(VideoRequest videoRequest);
+    Long add(VideoRequest videoRequest);
 
     /** *删除视频   */
-    void del(VideoRequest videoRequest);
+    Long del(VideoRequest videoRequest);
 
     /** *编辑视频   */
-    void edit(VideoRequest videoRequest);
+    Long edit(VideoRequest videoRequest);
 
     /** *查看详情   */
     Video detail(VideoRequest videoRequest);

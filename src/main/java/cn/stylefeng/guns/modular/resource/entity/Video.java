@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * 视频管理
@@ -47,4 +48,15 @@ public class Video extends BaseEntity {
     /** * 视频封面图  */
     @TableField("thumb_info")
     private String thumbInfo;
+
+    //不与数据库关联
+    @TableField(exist = false)
+    private List<Long> videoTag;
+
+    public List<Long> getVideoTag(){
+        return videoTag;
+    }
+    public void setVideoTag(List<Long> videoTag){
+        this.videoTag = videoTag;
+    }
 }

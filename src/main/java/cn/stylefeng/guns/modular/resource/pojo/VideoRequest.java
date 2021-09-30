@@ -4,6 +4,7 @@ import cn.stylefeng.roses.kernel.rule.pojo.request.BaseRequest;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
@@ -39,4 +40,7 @@ public class VideoRequest extends BaseRequest {
 
     /** * 视频封面图  */
     private String thumbInfo;
+
+    /** * 视频关联标签  */
+    private List<Long> videoTag;
 }
