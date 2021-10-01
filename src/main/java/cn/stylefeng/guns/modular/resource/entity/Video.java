@@ -53,6 +53,10 @@ public class Video extends BaseEntity {
     @TableField(exist = false)
     private List<Long> videoTag;
 
+    //不与数据库关联
+    @TableField(exist = false)
+    private List<TagVideo> videoTagList;
+
     public List<Long> getVideoTag(){
         return videoTag;
     }

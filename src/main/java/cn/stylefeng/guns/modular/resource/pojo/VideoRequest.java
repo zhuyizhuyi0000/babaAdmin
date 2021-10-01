@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.resource.pojo;
 
+import cn.stylefeng.guns.modular.resource.entity.TagVideo;
 import cn.stylefeng.roses.kernel.rule.pojo.request.BaseRequest;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -43,4 +44,7 @@ public class VideoRequest extends BaseRequest {
 
     /** * 视频关联标签  */
     private List<Long> videoTag;
+
+    /** * 视频关联标签list 带name了  */
+    private List<TagVideo> videoTagList;
 }

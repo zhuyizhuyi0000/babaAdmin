@@ -4,10 +4,12 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.stylefeng.guns.core.exception.BusinessException;
 import cn.stylefeng.guns.modular.resource.entity.TagLinkVideo;
+import cn.stylefeng.guns.modular.resource.entity.TagVideo;
 import cn.stylefeng.guns.modular.resource.exception.ResourceExceptionEnum;
 import cn.stylefeng.guns.modular.resource.mapper.TagLinkVideoMapper;
 import cn.stylefeng.guns.modular.resource.pojo.VideoRequest;
 import cn.stylefeng.guns.modular.resource.service.TagLinkVideoService;
+import cn.stylefeng.guns.modular.resource.service.TagVideoService;
 import cn.stylefeng.roses.kernel.db.api.factory.PageFactory;
 import cn.stylefeng.roses.kernel.db.api.factory.PageResultFactory;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
@@ -18,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +31,9 @@ import java.util.Map;
 @Slf4j
 @Service
 public class TagLinkVideoServiceImpl extends ServiceImpl<TagLinkVideoMapper, TagLinkVideo> implements TagLinkVideoService {
+
+    @Resource
+    private TagVideoService tagVideoService;
 
     @Override
     public void add(VideoRequest videoRequest){
@@ -47,7 +53,7 @@ public class TagLinkVideoServiceImpl extends ServiceImpl<TagLinkVideoMapper, Tag
             newTagLinkVideo.setTagId(tagId);
             tagLinkVideoList.add(newTagLinkVideo);
         }
-        log.info(tagLinkVideoList.toString());
+//        log.info(tagLinkVideoList.toString());
         this.saveBatch(tagLinkVideoList);
 
     }
@@ -86,6 +92,31 @@ public class TagLinkVideoServiceImpl extends ServiceImpl<TagLinkVideoMapper, Tag
                 videoTagList.add(tagLinkVideoList.get(i).getResourceId());
             }
 
+        }
+        return videoTagList;
+    }
+
+    //返回一个map  1 resourceId   2tag id
+    @Override
+    public List<TagVideo> findTagMapList(Long id, int num){
+        LambdaQueryWrapper<TagLinkVideo> wrapper = this.createWrapper(id,num);
+        List<TagLinkVideo> tagLinkVideoList = this.list(wrapper);
+        List<TagVideo> videoTagList = new ArrayList<TagVideo>();
+
+        if(tagLinkVideoList.size()==0){return videoTagList;}
+        for(int i=0;i<tagLinkVideoList.size();i++){
+            TagVideo tagVideo =new TagVideo();
+            if(num==1){
+                String name = tagVideoService.getName(tagLinkVideoList.get(i).getTagId());
+                tagVideo.setId(tagLinkVideoList.get(i).getTagId());
+                tagVideo.setName(name);
+                videoTagList.add(tagVideo);
+            }else {
+                String name = tagVideoService.getName(id);
+                tagVideo.setId(id);
+                tagVideo.setName(name);
+                videoTagList.add(tagVideo);
+            }
         }
         return videoTagList;
     }

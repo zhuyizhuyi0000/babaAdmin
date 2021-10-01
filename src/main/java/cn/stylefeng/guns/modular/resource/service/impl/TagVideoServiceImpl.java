@@ -15,14 +15,20 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** * 视频标签管理业务实现层   */
+@Slf4j
 @Service
 public class TagVideoServiceImpl extends ServiceImpl<TagVideoMapper, TagVideo> implements TagVideoService {
+
+
 
     @Override
     public void add(TagVideoRequest tagvideoRequest){
@@ -49,6 +55,35 @@ public class TagVideoServiceImpl extends ServiceImpl<TagVideoMapper, TagVideo> i
     @Override
     public TagVideo detail(TagVideoRequest tagvideoRequest){
         return this.queryTagVideo(tagvideoRequest);
+    }
+
+    @Override
+    public String getName(Long id){
+        TagVideo tagvideo = this.getById(id);
+        if(ObjectUtil.isEmpty(tagvideo)){
+            throw new BusinessException(ResourceExceptionEnum.VIDEO_NOT_EXISTED);
+        }
+        String name = tagvideo.getName();
+        return name;
+    }
+
+    //一次性把所有sql in的都查出来，避免查多次了
+    @Override
+    public List<TagVideo> findAllTagNameList(List<Long> tagIdList){
+        LambdaQueryWrapper<TagVideo> wrapper = this.createAllWrapper(tagIdList);
+//        List<TagVideo>  tagList1 = this.list(wrapper);
+//        log.info("查出tagVideo集合的list "+tagList1.toString());
+        return this.list(wrapper);
+    }
+
+    /** * 创建查询wrapper 拿list进去  */
+    private LambdaQueryWrapper<TagVideo> createAllWrapper(List<Long> list){
+        LambdaQueryWrapper<TagVideo> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(TagVideo::getId, list);
+
+//        String tagvideoName ="";
+//        queryWrapper.like(ObjectUtil.isNotEmpty(tagvideoName),TagVideo::getName,tagvideoName);
+        return queryWrapper;
     }
 
     @Override

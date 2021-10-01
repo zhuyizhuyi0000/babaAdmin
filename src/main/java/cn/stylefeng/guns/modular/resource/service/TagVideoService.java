@@ -6,6 +6,7 @@ import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TagVideoService extends IService<TagVideo> {
     /** *添加视频标签   */
@@ -25,4 +26,11 @@ public interface TagVideoService extends IService<TagVideo> {
 
     /** *查询所有视频标签   */
     List<TagVideo> findList(TagVideoRequest tagvideoRequest);
+
+    /** *查询名称   */
+    String getName(Long id);
+
+    //返回id+标签名字
+//    Map<Long,String> findAllTagNameList(List<Long> list);
+    List<TagVideo> findAllTagNameList(List<Long> list);
 }
