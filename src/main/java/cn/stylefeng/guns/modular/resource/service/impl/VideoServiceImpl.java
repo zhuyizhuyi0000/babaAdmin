@@ -148,7 +148,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
                     tagAllList.add(sumlist1.get(a).getTagId());
                 }
             }
-            log.info("tagId的集合: "+tagAllList.toString());
+//            log.info("tagId的集合: "+tagAllList.toString());
 
             List<TagVideo> tagList1 = tagVideoService.findAllTagNameList(tagAllList);
             //搞成map 一个id一个name

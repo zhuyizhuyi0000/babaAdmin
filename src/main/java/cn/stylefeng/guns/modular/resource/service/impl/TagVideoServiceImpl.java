@@ -8,6 +8,7 @@ import cn.stylefeng.guns.modular.resource.entity.Video;
 import cn.stylefeng.guns.modular.resource.exception.ResourceExceptionEnum;
 import cn.stylefeng.guns.modular.resource.mapper.TagVideoMapper;
 import cn.stylefeng.guns.modular.resource.pojo.TagVideoRequest;
+import cn.stylefeng.guns.modular.resource.service.TagLinkVideoService;
 import cn.stylefeng.guns.modular.resource.service.TagVideoService;
 import cn.stylefeng.roses.kernel.db.api.factory.PageFactory;
 import cn.stylefeng.roses.kernel.db.api.factory.PageResultFactory;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +30,8 @@ import java.util.Map;
 @Service
 public class TagVideoServiceImpl extends ServiceImpl<TagVideoMapper, TagVideo> implements TagVideoService {
 
-
+    @Resource
+    private TagLinkVideoService tagLinkVideoService;
 
     @Override
     public void add(TagVideoRequest tagvideoRequest){
@@ -42,6 +45,8 @@ public class TagVideoServiceImpl extends ServiceImpl<TagVideoMapper, TagVideo> i
     public Long del(TagVideoRequest tagvideoRequest){
         TagVideo tagvideo = this.queryTagVideo(tagvideoRequest);
         this.removeById(tagvideo.getId());
+
+        tagLinkVideoService.del(tagvideo.getId(),2); //1 resource；2tag
         return tagvideo.getId();
     }
 
