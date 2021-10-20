@@ -27,31 +27,6 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
             {field: 'url', sort: true, align: "center", title: '视频链接'},
             {field: 'transcodingUrl', sort: true, align: "center", title: '转码后链接'},
             {field: 'thumbInfo', sort: true, align: "center", title: '封面图地址'},
-            {field: 'videoTagList', sort: true, align: "center", title: '标签列表',
-                width: 150,
-                templet: function(row){
-                    if(!row.videoTagList) {
-                        return  ''
-                    }
-                   if(row.videoTagList.length === 0) {
-                       return ''
-                   }
-                   const str = row.videoTagList.map(item=> `<div style="
-                                border-radius: 10px;
-                                box-sizing: border-box;
-                                display: block;
-                                font-size: 12px;
-                                font-weight: 400;
-                                height: 20px;
-                                line-height: 20px;
-                                overflow: hidden;
-                                padding: 0 8px;
-                                text-align: left;
-                                background: #aecf55;
-                                white-space: nowrap;">
-                            ${item.name}</div>`);
-                   return  `<div style="display: flex;">${str}</div>`
-                }},
             {field: 'createTime', sort: true, align: "center", title: '创建时间'},
             {field: 'updateTime', sort: true, align: "center", title: '更新时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
@@ -147,3 +122,23 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
     });
 
 });
+
+new Vue({
+    el: '#layui-app',
+    created: function () {
+        // `this` 指向 vm 实例
+    },
+    methods: {
+        deleteRow(index, rows) {
+            rows.splice(index, 1);
+        },
+        getData: function ( ) {
+
+        },
+    },
+    data() {
+        return {
+            tableData: []
+        }
+    }
+})
