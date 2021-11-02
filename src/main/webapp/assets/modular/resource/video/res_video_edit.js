@@ -36,6 +36,10 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
                 this.tag = this.tag.filter( value=> { return value.id != item.id});
                 this.value = this.value.filter(values => item.id != values);
             },
+            removeTag: function (item) {
+                this.tag = this.tag.filter( value=> { return value.id != item});
+                this.value = this.value.filter(values => item != values);
+            },
             remoteMethod(query) {
                 if (query !== '') {
                     this.loading = true;

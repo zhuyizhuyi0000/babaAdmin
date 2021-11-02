@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">视频转码链接</label>
+                        <label class="layui-form-label">转码链接</label>
                         <div class="layui-input-block">
                             <input name="transcodingUrl" :value="forms.transcodingUrl" placeholder="请输入视频转码链接" type="text" class="layui-input"  autocomplete="off"/>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label">视频视频标签</label>
+                        <label class="layui-form-label">视频标签</label>
                         <div class="layui-input-block">
 <!--                            <input name="videoTagList"  :value="getData()"  type="hidden"/>-->
                             <div style="display: flex;">
@@ -85,8 +85,10 @@
                                     filterable
                                     remote
                                     reserve-keyword
+                                    style="width: 100%"
                                     placeholder="请输入关键词"
                                     :remote-method="remoteMethod"
+                                    v-on:remove-tag="removeTag"
                                     :loading="loading">
                                 <el-option
                                         v-for="item in tag"
