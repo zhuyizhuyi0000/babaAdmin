@@ -1,5 +1,7 @@
 @layout("/layout/_form.html",{js:["/assets/modular/resource/video/res_video_edit.js"]}){
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="../../../../assets/common/libs/vue-lib/vue.js"></script>
+<link rel="stylesheet" href="../../../../assets/common/libs/vue-lib/index.css">
+<script src="../../../../assets/common/libs/vue-lib/index.js"></script>
 <form class="layui-form" id="videoForm" lay-filter="videoForm">
     <div class="layui-fluid" id="layui-app" style="padding-bottom: 75px;">
         <div class="layui-card">
@@ -56,20 +58,43 @@
                             <div style="display: flex;">
                                 <div  v-for="item in tag"
                                       style="border-radius: 10px;
-                                box-sizing: border-box;
-                                display: block;
-                                font-size: 12px;
-                                font-weight: 400;
-                                height: 20px;
-                                line-height: 20px;
-                                overflow: hidden;
-                                padding: 0 8px;
-                                text-align: left;
-                                background: #aecf55;
-                                white-space: nowrap;">
-                                    {{item.name}}
+                                        box-sizing: border-box;
+                                        display: block;
+                                        font-size: 12px;
+                                        font-weight: 400;
+                                        height: 20px;
+                                        line-height: 20px;
+                                        overflow: hidden;
+                                        padding: 0 8px;
+                                        text-align: left;
+                                        background: #aecf55;
+                                        margin-right: 10px;
+                                        white-space: nowrap;">
+                                        {{item.name}}
+                                    <span style="color: #ffffff; cursor: pointer" v-on:click="deleteItem(item)">X</span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">添加标签</label>
+                        <div class="layui-input-block">
+                            <el-select
+                                    v-model="value"
+                                    multiple
+                                    filterable
+                                    remote
+                                    reserve-keyword
+                                    placeholder="请输入关键词"
+                                    :remote-method="remoteMethod"
+                                    :loading="loading">
+                                <el-option
+                                        v-for="item in tag"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
+                                </el-option>
+                            </el-select>
                         </div>
                     </div>
                 </div>

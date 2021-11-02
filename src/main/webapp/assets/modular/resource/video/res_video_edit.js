@@ -14,12 +14,16 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         data: {
             tag: [],
             forms: {},
+            loading: false,
+            options: [],
+            value: [],
         },
         created:function () {
             result = request.start();
             layui.form.val('videoForm', result.data);
             this.forms = result.data;
             this.tag = result.data.videoTagList;
+            this.value =  result.data.videoTagList.map(item=> { return item.id});
         },
         methods: {
             getData: function (){
@@ -28,6 +32,26 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
                 }
                 return this.tag.map((item)=> (item.id))
             },
+            deleteItem: function (item) {
+                this.tag = this.tag.filter( value=> { return value.id != item.id});
+                this.value = this.value.filter(values => item.id != values);
+            },
+            remoteMethod(query) {
+                if (query !== '') {
+                    this.loading = true;
+                    var that = this;
+                    var request = new HttpRequest(Feng.ctxPath + "/tagVideo/findPage?pageNo=1&pageSize=10&name="+ query, 'get', function (data) {
+                        that.loading = false;
+                        var rows = data.data.rows;
+                        var tagId = that.tag.map(item=> item.id);
+                        rows = rows.filter(item=> !tagId.includes(item.id))
+                        that.tag = that.tag.concat(rows);
+                    });
+                    request.start();
+                } else {
+                    this.options = [];
+                }
+            }
         },
         el: '#layui-app',
     })
