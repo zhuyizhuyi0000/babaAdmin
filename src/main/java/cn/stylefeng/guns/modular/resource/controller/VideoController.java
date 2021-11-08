@@ -1,5 +1,6 @@
 package cn.stylefeng.guns.modular.resource.controller;
 
+import cn.stylefeng.guns.modular.resource.pojo.OnlineRequest;
 import cn.stylefeng.guns.modular.resource.pojo.VideoRequest;
 import cn.stylefeng.guns.modular.resource.service.TagLinkVideoService;
 import cn.stylefeng.guns.modular.resource.service.VideoService;
@@ -62,5 +63,11 @@ public class VideoController {
     @GetResource(name = "分页查询", path = "/video/findPage")
     public ResponseData page(VideoRequest videoRequest) {
         return new SuccessResponseData(videoService.findPage(videoRequest));
+    }
+
+    /** *传账号密码去查询资源列表   */
+    @GetResource(name = "批量查询资源", path = "/video/findPageDetail")
+    public ResponseData pageDetail(OnlineRequest onlineRequest) {
+        return new SuccessResponseData(videoService.findPageDetail(onlineRequest));
     }
 }

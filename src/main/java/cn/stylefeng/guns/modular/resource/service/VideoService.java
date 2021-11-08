@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.resource.service;
 
 import cn.stylefeng.guns.modular.resource.entity.Video;
+import cn.stylefeng.guns.modular.resource.pojo.OnlineRequest;
 import cn.stylefeng.guns.modular.resource.pojo.VideoRequest;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -25,4 +26,7 @@ public interface VideoService extends IService<Video> {
 
     /** *查询所有视频   */
     List<Video> findList(VideoRequest videoRequest);
+
+    /** *通过用户名密码查资源   */
+    List<Video> findPageDetail(OnlineRequest onlineRequest);
 }

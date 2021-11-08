@@ -9,7 +9,9 @@ import cn.stylefeng.guns.modular.resource.entity.TagVideo;
 import cn.stylefeng.guns.modular.resource.entity.Video;
 import cn.stylefeng.guns.modular.resource.exception.ResourceExceptionEnum;
 import cn.stylefeng.guns.modular.resource.mapper.VideoMapper;
+import cn.stylefeng.guns.modular.resource.pojo.OnlineRequest;
 import cn.stylefeng.guns.modular.resource.pojo.VideoRequest;
+import cn.stylefeng.guns.modular.resource.service.OnlineService;
 import cn.stylefeng.guns.modular.resource.service.TagLinkVideoService;
 import cn.stylefeng.guns.modular.resource.service.TagVideoService;
 import cn.stylefeng.guns.modular.resource.service.VideoService;
@@ -39,6 +41,8 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
     private TagLinkVideoService tagLinkVideoService;
     @Resource
     private TagVideoService tagVideoService;
+    @Resource
+    private OnlineService onlineService;
 
     @Override
     public Long add(VideoRequest videoRequest){
@@ -90,6 +94,23 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         video.setVideoTagList(videoTagMapList);
 
         return video;
+    }
+
+    /** *通过传username和password 把结果都拿过来   */
+    @Override
+    public List<Video> findPageDetail(OnlineRequest onlineRequest){
+        String userName = onlineRequest.getUserName();
+        String passWord = onlineRequest.getPassWord();
+        Integer pageNum = onlineRequest.getPageNum();
+        Integer mode = onlineRequest.getMode();
+        if(ObjectUtil.isEmpty(pageNum)){
+            pageNum=1;
+        }
+        if(ObjectUtil.isEmpty(mode)){
+            mode=1;
+        }
+        List<Video> allVideoList = onlineService.findPageDetail(userName,passWord,pageNum,mode);
+        return allVideoList;
     }
 
     @Override
