@@ -23,6 +23,9 @@ public class OnlineRequest extends BaseRequest {
     /** * 页码数  */
     private Integer pageNum;
 
+    /** * 个数  */
+    private Integer num;
+
     /** * 模式 1=视频 2=文档 3=ushow */
     private Integer mode;
 

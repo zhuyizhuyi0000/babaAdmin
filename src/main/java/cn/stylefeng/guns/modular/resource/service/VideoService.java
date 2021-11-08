@@ -29,4 +29,7 @@ public interface VideoService extends IService<Video> {
 
     /** *通过用户名密码查资源   */
     List<Video> findPageDetail(OnlineRequest onlineRequest);
+
+    /** *通过用户名密码只查1个资源   */
+    Video findPageOneDetail(OnlineRequest onlineRequest);
 }

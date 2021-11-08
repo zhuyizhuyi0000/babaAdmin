@@ -32,4 +32,12 @@ public class VideoViewController {
     public String videoEdit() {
         return "/modular/resource/video/res_video_edit.html";
     }
+
+    /**
+     * 视频管理-编辑-单个添加
+     */
+    @GetResource(name = "视频管理-单个添加编辑", path = "/view/res_video/Oedit")
+    public String videoOneEdit() {
+        return "/modular/resource/video/res_video_Oedit.html";
+    }
 }

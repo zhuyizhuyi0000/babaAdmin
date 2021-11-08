@@ -94,6 +94,27 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
     };
 
     /**
+     * 添加单个视频对话框
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Video.openAddAccountDlg = function () {
+        var queryData = {};
+        if ($("#userName").val() && $("#passWord").val() && $("#pageNum").val() && $("#num").val()) {
+            queryData['userName'] = $("#userName").val();
+            queryData['passWord'] = $("#passWord").val();
+            queryData['pageNum'] = $("#pageNum").val();
+            queryData['num'] = $("#num").val();
+            func.open({
+                title: '修改视频-获取',
+                content: Feng.ctxPath + '/view/res_video/Oedit?userName=' + queryData['userName'] +'&passWord=' +queryData['passWord'] + '&pageNum=' +queryData['pageNum'] + '&num=' + queryData['num'],
+                tableId: Video.tableId
+            });
+        }
+
+    };
+
+    /**
      * 点击删除
      *
      * @param data 点击按钮时候的行数据
@@ -132,6 +153,11 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
         Video.openAddDlg();
+    });
+
+    // 添加按钮点击事件
+    $('#btnAddAccount').click(function () {
+        Video.openAddAccountDlg();
     });
 
     // 工具条点击事件

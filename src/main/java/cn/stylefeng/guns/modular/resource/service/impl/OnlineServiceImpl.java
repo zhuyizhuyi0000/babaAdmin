@@ -29,6 +29,44 @@ public class OnlineServiceImpl implements OnlineService {
 //    public final static String PASSWD = "qweqwe";
 
     @Override
+    public Video findPageOneDetail(String userName,String passWord,Integer pageNum,Integer num,Integer mode){
+        Video video = new Video();
+        if(userName == null || userName.equals("") || userName.length()==0 || passWord == null || passWord.equals("") || passWord.length()==0){
+            return video;
+        }
+        if(null == pageNum){pageNum = 1;}
+        if(null == mode || mode != 2){ mode = 1 ;}
+        List<Map<String,String>> resList = getResList(userName,passWord,pageNum,mode);
+        if(resList == null || resList.size() == 0){
+            return video;
+        }
+        if(null == num ||num >= resList.size()){
+            num = 0;
+        }
+
+        video.setFileName(resList.get(num).get("file_name"));
+        String fileSi = resList.get(num).get("file_size");
+        Long fs = null;
+        if (fileSi != null) {
+            fs = Long.valueOf(fileSi);
+        }
+        video.setFileSize(fs);
+
+        String fileDur = resList.get(num).get("file_duration");
+        Integer fd = null;
+        if (fileDur != null) {
+            fd = Integer.valueOf(fileDur);
+        }
+        video.setFileDuration(fd);
+        video.setUrl(resList.get(num).get("url"));
+        video.setExt(resList.get(num).get("ext"));
+        video.setTranscodingUrl(resList.get(num).get("transcoding_url"));
+        video.setThumbInfo(resList.get(num).get("thumb_info"));
+
+        return video;
+    }
+
+    @Override
     public List<Video> findPageDetail(String userName, String passWord, Integer pageNum, Integer mode){
         List<Video> allVideoList = new ArrayList<>();
 

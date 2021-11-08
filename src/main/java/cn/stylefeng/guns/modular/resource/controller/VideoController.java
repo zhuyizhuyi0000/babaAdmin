@@ -70,4 +70,10 @@ public class VideoController {
     public ResponseData pageDetail(OnlineRequest onlineRequest) {
         return new SuccessResponseData(videoService.findPageDetail(onlineRequest));
     }
+
+    /** *传账号密码去查询一个资源   */
+    @GetResource(name = "单个查询资源", path = "/video/findPageOneDetail")
+    public ResponseData pageOneDetail(OnlineRequest onlineRequest) {
+        return new SuccessResponseData(videoService.findPageOneDetail(onlineRequest));
+    }
 }

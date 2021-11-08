@@ -223,4 +223,26 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
 
         return queryWrapper;
     }
+
+    /** *通过传username和password 把结果都拿过来  只拿一条   */
+    @Override
+    public Video findPageOneDetail(OnlineRequest onlineRequest){
+        String userName = onlineRequest.getUserName();
+        String passWord = onlineRequest.getPassWord();
+        Integer pageNum = onlineRequest.getPageNum();
+        Integer mode = onlineRequest.getMode();
+        Integer num = onlineRequest.getNum();
+
+        if(ObjectUtil.isEmpty(pageNum)){
+            pageNum=1;
+        }
+        if(ObjectUtil.isEmpty(mode)){
+            mode=1;
+        }
+        if(ObjectUtil.isEmpty(num)){
+            num=0;
+        }
+        Video video = onlineService.findPageOneDetail(userName,passWord,pageNum,num,mode);
+        return video;
+    }
 }
