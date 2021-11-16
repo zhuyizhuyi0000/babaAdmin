@@ -25,18 +25,20 @@ import static io.restassured.RestAssured.given;
 public class OnlineServiceImpl implements OnlineService {
     public final static String PRO = "https://www.umu.cn/passport/ajax/account/login";
     public final static String PROVIDEO = "https://www.umu.cn/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=videoweike";
-//    public final static String USERNAME = "ytest1234@qq.com";
+    public final static String PROCOM = "https://www.umu.com/passport/ajax/account/login";
+    public final static String PROVIDEOCOM = "https://www.umu.com/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=videoweike";
+    //    public final static String USERNAME = "ytest1234@qq.com";
 //    public final static String PASSWD = "qweqwe";
 
     @Override
-    public Video findPageOneDetail(String userName,String passWord,Integer pageNum,Integer num,Integer mode){
+    public Video findPageOneDetail(String userName,String passWord,Integer pageNum,Integer num,Integer mode,Integer site){
         Video video = new Video();
         if(userName == null || userName.equals("") || userName.length()==0 || passWord == null || passWord.equals("") || passWord.length()==0){
             return video;
         }
         if(null == pageNum){pageNum = 1;}
         if(null == mode || mode != 2){ mode = 1 ;}
-        List<Map<String,String>> resList = getResList(userName,passWord,pageNum,mode);
+        List<Map<String,String>> resList = getResList(userName,passWord,pageNum,mode,site);
         if(resList == null || resList.size() == 0){
             return video;
         }
@@ -67,7 +69,7 @@ public class OnlineServiceImpl implements OnlineService {
     }
 
     @Override
-    public List<Video> findPageDetail(String userName, String passWord, Integer pageNum, Integer mode){
+    public List<Video> findPageDetail(String userName, String passWord, Integer pageNum, Integer mode,Integer site){
         List<Video> allVideoList = new ArrayList<>();
 
         if(userName == null || userName.equals("") || userName.length()==0 || passWord == null || passWord.equals("") || passWord.length()==0){
@@ -75,7 +77,7 @@ public class OnlineServiceImpl implements OnlineService {
         }
         if(null == pageNum){pageNum = 1;}
         if(null == mode || mode != 2){ mode = 1 ;}
-        List<Map<String,String>> resList = getResList(userName,passWord,pageNum,mode);
+        List<Map<String,String>> resList = getResList(userName,passWord,pageNum,mode,site);
 //        JSONObject jsonObject = JSONObject.parseObject(resList.get(0).toString());
 
         if(resList == null || resList.size() == 0){
@@ -118,10 +120,17 @@ public class OnlineServiceImpl implements OnlineService {
         return allVideoList;
     }
 
-    public List<Map<String,String>> getResList(String userName, String passWord, Integer pageNum, Integer mode){
+    public List<Map<String,String>> getResList(String userName, String passWord, Integer pageNum, Integer mode,Integer site){
 //        if(mode==2){ url}
-        String url = PROVIDEO + "&page=" + pageNum;
-        RequestSpecification requestSpecification = getRequestSpecification(userName,passWord,PRO);
+        String url;
+        RequestSpecification requestSpecification;
+        if(site == 2){
+            url = PROVIDEOCOM + "&page=" + pageNum;
+            requestSpecification = getRequestSpecification(userName,passWord,PROCOM);
+        }else {
+            url = PROVIDEO + "&page=" + pageNum;
+            requestSpecification = getRequestSpecification(userName,passWord,PRO);
+        }
         List<Map<String,String>> jsonRes =RestAssured.given(requestSpecification).when().log().all().get(url)
                 .then().
                 extract().

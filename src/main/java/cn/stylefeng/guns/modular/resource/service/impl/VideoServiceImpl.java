@@ -103,13 +103,17 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         String passWord = onlineRequest.getPassWord();
         Integer pageNum = onlineRequest.getPageNum();
         Integer mode = onlineRequest.getMode();
+        Integer site = onlineRequest.getSite();
         if(ObjectUtil.isEmpty(pageNum)){
             pageNum=1;
         }
         if(ObjectUtil.isEmpty(mode)){
             mode=1;
         }
-        List<Video> allVideoList = onlineService.findPageDetail(userName,passWord,pageNum,mode);
+        if(ObjectUtil.isEmpty(site)){
+            site=1;
+        }
+        List<Video> allVideoList = onlineService.findPageDetail(userName,passWord,pageNum,mode,site);
         return allVideoList;
     }
 
@@ -232,6 +236,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         Integer pageNum = onlineRequest.getPageNum();
         Integer mode = onlineRequest.getMode();
         Integer num = onlineRequest.getNum();
+        Integer site = onlineRequest.getSite();
 
         if(ObjectUtil.isEmpty(pageNum)){
             pageNum=1;
@@ -242,7 +247,10 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
         if(ObjectUtil.isEmpty(num)){
             num=0;
         }
-        Video video = onlineService.findPageOneDetail(userName,passWord,pageNum,num,mode);
+        if(ObjectUtil.isEmpty(site)){
+            site=1;
+        }
+        Video video = onlineService.findPageOneDetail(userName,passWord,pageNum,num,mode,site);
         return video;
     }
 }

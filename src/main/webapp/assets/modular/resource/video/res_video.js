@@ -100,14 +100,15 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
      */
     Video.openAddAccountDlg = function () {
         var queryData = {};
-        if ($("#userName").val() && $("#passWord").val() && $("#pageNum").val() && $("#num").val()) {
+        if ($("#userName").val() && $("#passWord").val() && $("#pageNum").val() && $("#num").val() && $("#site").val()) {
             queryData['userName'] = $("#userName").val();
             queryData['passWord'] = $("#passWord").val();
             queryData['pageNum'] = $("#pageNum").val();
             queryData['num'] = $("#num").val();
+            queryData['site'] = $("#site").val();
             func.open({
                 title: '修改视频-获取',
-                content: Feng.ctxPath + '/view/res_video/Oedit?userName=' + queryData['userName'] +'&passWord=' +queryData['passWord'] + '&pageNum=' +queryData['pageNum'] + '&num=' + queryData['num'],
+                content: Feng.ctxPath + '/view/res_video/Oedit?userName=' + queryData['userName'] +'&passWord=' +queryData['passWord'] + '&pageNum=' +queryData['pageNum'] + '&num=' + queryData['num'] + '&site=' + queryData['site'],
                 tableId: Video.tableId
             });
         }

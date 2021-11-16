@@ -7,7 +7,7 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var HttpRequest = layui.HttpRequest;
     var result;
     // 获取视频详情
-    var request = new HttpRequest(Feng.ctxPath + "/video/findPageOneDetail?userName=" + Feng.getUrlParam("userName") + "&passWord=" + Feng.getUrlParam("passWord") + "&pageNum=" +Feng.getUrlParam("pageNum") + "&num=" +Feng.getUrlParam("num") + "&mode=1", 'get');
+    var request = new HttpRequest(Feng.ctxPath + "/video/findPageOneDetail?userName=" + Feng.getUrlParam("userName") + "&passWord=" + Feng.getUrlParam("passWord") + "&pageNum=" +Feng.getUrlParam("pageNum") + "&num=" +Feng.getUrlParam("num") + "&mode=1" + "&site=" + +Feng.getUrlParam("site"), 'get');
     // var request = new HttpRequest(Feng.ctxPath + "/video/detail?vidId=" + Feng.getUrlParam("vidId"), 'get');
 
     var vm = new Vue({

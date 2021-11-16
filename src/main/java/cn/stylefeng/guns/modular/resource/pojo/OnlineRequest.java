@@ -29,4 +29,6 @@ public class OnlineRequest extends BaseRequest {
     /** * 模式 1=视频 2=文档 3=ushow */
     private Integer mode;
 
+    /** * 站点 1=cn 2=com  */
+    private Integer site;
 }
