@@ -1,12 +1,17 @@
 package cn.stylefeng.guns.modular.resource.pojo;
 
+import cn.stylefeng.guns.modular.resource.entity.TagDoc;
 import cn.stylefeng.roses.kernel.rule.pojo.request.BaseRequest;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.validation.constraints.NotNull;
-
-/** *文档管理请求   */
+/** *视频管理请求   */
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DocRequest extends BaseRequest {
@@ -33,4 +38,10 @@ public class DocRequest extends BaseRequest {
 
     /** * 文档封面图  */
     private String thumbInfo;
+
+    /** * 文档关联标签  */
+    private List<Long> docTag;
+
+    /** * 文档关联标签list 带name了  */
+    private List<TagDoc> docTagList;
 }

@@ -1,5 +1,5 @@
 /**
- * 添加文档
+ * 编辑文档
  */
 layui.use(['form', 'admin', 'HttpRequest'], function () {
     var form = layui.form;
@@ -7,6 +7,8 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
     var HttpRequest = layui.HttpRequest;
     var result;
     // 获取文档详情
+    var request = new HttpRequest(Feng.ctxPath + "/doc/findPageOneDetail?userName=" + Feng.getUrlParam("userName") + "&passWord=" + Feng.getUrlParam("passWord") + "&pageNum=" +Feng.getUrlParam("pageNum") + "&num=" +Feng.getUrlParam("num") + "&mode=2" + "&site=" + +Feng.getUrlParam("site"), 'get');
+    // var request = new HttpRequest(Feng.ctxPath + "/doc/detail?vidId=" + Feng.getUrlParam("vidId"), 'get');
 
     var vm = new Vue({
         data: {
@@ -17,6 +19,11 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
             value: [],
         },
         created:function () {
+            result = request.start();
+            layui.form.val('docForm', result.data);
+            this.forms = result.data;
+            // this.tag = result.data.docTagList;
+            // this.value =  result.data.docTagList.map(item=> { return item.id});
         },
         methods: {
             getData: function (){
@@ -53,18 +60,18 @@ layui.use(['form', 'admin', 'HttpRequest'], function () {
         el: '#layui-app',
     })
 
-    //表单提交事件
+    // 表单提交事件
     form.on('submit(btnSubmit)', function (data) {
         var field = data.field;
         field.docTag = vm.getData();
         data.field = field;
         var request = new HttpRequest(Feng.ctxPath + "/doc/add", 'post', function (data) {
-            admin.closeThisDialog();
-            Feng.success("添加成功！");
+            Feng.success("添加成功!");
             admin.putTempData('formOk', true);
-        }, function (data) {
             admin.closeThisDialog();
-            Feng.error("添加失败！" + data.message);
+        }, function (data) {
+            Feng.error("修改失败!" + data.message);
+            admin.closeThisDialog();
         });
         request.set(data.field);
         request.start(true);

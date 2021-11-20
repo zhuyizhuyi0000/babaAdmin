@@ -32,4 +32,12 @@ public class DocViewController {
     public String docEdit() {
         return "/modular/resource/doc/res_doc_edit.html";
     }
+
+    /**
+     * 文档管理-编辑-单个添加
+     */
+    @GetResource(name = "文档管理-单个添加编辑", path = "/view/res_doc/Oedit")
+    public String videoOneEdit() {
+        return "/modular/resource/doc/res_doc_Oedit.html";
+    }
 }

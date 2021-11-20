@@ -80,6 +80,7 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
         });
     };
 
+
     /**
      * 编辑视频对话框
      *

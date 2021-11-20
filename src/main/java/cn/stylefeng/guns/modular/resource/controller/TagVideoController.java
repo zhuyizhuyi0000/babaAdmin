@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 public class TagVideoController {
     @Resource
     private TagVideoService tagvideoService;
+    @Resource
     private TagLinkVideoService tagLinkVideoService;
 
     //添加

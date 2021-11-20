@@ -12,7 +12,7 @@ public interface TagDocService extends IService<TagDoc> {
     void add(TagDocRequest tagdocRequest);
 
     /** *删除文档标签   */
-    void del(TagDocRequest tagdocRequest);
+    Long del(TagDocRequest tagdocRequest);
 
     /** *编辑文档标签   */
     void edit(TagDocRequest tagdocRequest);
@@ -25,4 +25,11 @@ public interface TagDocService extends IService<TagDoc> {
 
     /** *查询所有文档标签   */
     List<TagDoc> findList(TagDocRequest tagdocRequest);
+
+    /** *查询名称   */
+    String getName(Long id);
+
+    //返回id+标签名字
+//    Map<Long,String> findAllTagNameList(List<Long> list);
+    List<TagDoc> findAllTagNameList(List<Long> list);
 }

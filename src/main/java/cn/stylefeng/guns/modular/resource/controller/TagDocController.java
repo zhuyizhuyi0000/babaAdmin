@@ -2,6 +2,7 @@ package cn.stylefeng.guns.modular.resource.controller;
 
 import cn.stylefeng.guns.modular.resource.pojo.TagDocRequest;
 import cn.stylefeng.guns.modular.resource.service.TagDocService;
+import cn.stylefeng.guns.modular.resource.service.TagLinkDocService;
 import cn.stylefeng.roses.kernel.rule.pojo.response.ResponseData;
 import cn.stylefeng.roses.kernel.rule.pojo.response.SuccessResponseData;
 import cn.stylefeng.roses.kernel.scanner.api.annotation.ApiResource;
@@ -21,6 +22,8 @@ import javax.annotation.Resource;
 public class TagDocController {
     @Resource
     private TagDocService tagdocService;
+    @Resource
+    private TagLinkDocService tagLinkDocService;
 
     //添加
     @PostResource(name = "添加文档标签",path = "/tagDoc/add")
@@ -32,7 +35,8 @@ public class TagDocController {
     /** *删除   */
     @PostResource(name = "删除文档标签",path = "/tagDoc/delete")
     public ResponseData delete(@RequestBody @Validated(TagDocRequest.delete.class) TagDocRequest tagdocRequest){
-        tagdocService.del(tagdocRequest);
+        Long id = tagdocService.del(tagdocRequest);
+        tagLinkDocService.del(id,2); //1 resource；2tag
         return new SuccessResponseData();
     }
 

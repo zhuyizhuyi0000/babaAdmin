@@ -4,10 +4,13 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.stylefeng.guns.core.exception.BusinessException;
 import cn.stylefeng.guns.modular.resource.entity.TagDoc;
+import cn.stylefeng.guns.modular.resource.entity.TagLinkDoc;
+import cn.stylefeng.guns.modular.resource.entity.TagDoc;
 import cn.stylefeng.guns.modular.resource.exception.ResourceExceptionEnum;
 import cn.stylefeng.guns.modular.resource.mapper.TagDocMapper;
 import cn.stylefeng.guns.modular.resource.pojo.TagDocRequest;
 import cn.stylefeng.guns.modular.resource.service.TagDocService;
+import cn.stylefeng.guns.modular.resource.service.TagLinkDocService;
 import cn.stylefeng.roses.kernel.db.api.factory.PageFactory;
 import cn.stylefeng.roses.kernel.db.api.factory.PageResultFactory;
 import cn.stylefeng.roses.kernel.db.api.pojo.page.PageResult;
@@ -17,11 +20,15 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /** * 文档标签管理业务实现层   */
 @Service
 public class TagDocServiceImpl extends ServiceImpl<TagDocMapper, TagDoc> implements TagDocService {
+
+    @Resource
+    private TagLinkDocService tagLinkDocService;
 
     @Override
     public void add(TagDocRequest tagdocRequest){
@@ -32,9 +39,12 @@ public class TagDocServiceImpl extends ServiceImpl<TagDocMapper, TagDoc> impleme
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void del(TagDocRequest tagdocRequest){
+    public Long del(TagDocRequest tagdocRequest){
         TagDoc tagdoc = this.queryTagDoc(tagdocRequest);
         this.removeById(tagdoc.getId());
+
+        tagLinkDocService.del(tagdoc.getId(),2); //1 resource; 2tag
+        return  tagdoc.getId();
     }
 
     @Override
@@ -47,6 +57,35 @@ public class TagDocServiceImpl extends ServiceImpl<TagDocMapper, TagDoc> impleme
     @Override
     public TagDoc detail(TagDocRequest tagdocRequest){
         return this.queryTagDoc(tagdocRequest);
+    }
+    
+    @Override
+    public String getName(Long id){
+        TagDoc tagdoc = this.getById(id);
+        if(ObjectUtil.isEmpty(tagdoc)){
+            throw new BusinessException(ResourceExceptionEnum.VIDEO_NOT_EXISTED);
+        }
+        String name = tagdoc.getName();
+        return name;
+    }
+
+    //一次性把所有sql in的都查出来，避免查多次了
+    @Override
+    public List<TagDoc> findAllTagNameList(List<Long> tagIdList){
+        LambdaQueryWrapper<TagDoc> wrapper = this.createAllWrapper(tagIdList);
+//        List<TagDoc>  tagList1 = this.list(wrapper);
+//        log.info("查出tagDoc集合的list "+tagList1.toString());
+        return this.list(wrapper);
+    }
+
+    /** * 创建查询wrapper 拿list进去  */
+    private LambdaQueryWrapper<TagDoc> createAllWrapper(List<Long> list){
+        LambdaQueryWrapper<TagDoc> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.in(TagDoc::getId, list);
+
+//        String tagvideoName ="";
+//        queryWrapper.like(ObjectUtil.isNotEmpty(tagvideoName),TagDoc::getName,tagvideoName);
+        return queryWrapper;
     }
 
     @Override

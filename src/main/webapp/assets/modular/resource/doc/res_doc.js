@@ -26,6 +26,31 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
             {field: 'url', sort: true, align: "center", title: '文档链接'},
             {field: 'pdfUrl', sort: true, align: "center", title: '转码后链接'},
             {field: 'thumbInfo', sort: true, align: "center", title: '封面图地址'},
+            {field: 'docTagList', sort: true, align: "center", title: '标签列表',
+                width: 150,
+                templet: function(row){
+                    if(!row.docTagList) {
+                        return  ''
+                    }
+                   if(row.docTagList.length === 0) {
+                       return ''
+                   }
+                   const str = row.docTagList.map(item=> `<div style="
+                                border-radius: 10px;
+                                box-sizing: border-box;
+                                display: block;
+                                font-size: 12px;
+                                font-weight: 400;
+                                height: 20px;
+                                line-height: 20px;
+                                overflow: hidden;
+                                padding: 0 8px;
+                                text-align: left;
+                                background: #aecf55;
+                                white-space: nowrap;">
+                            ${item.name}</div>`);
+                   return  `<div style="display: flex;">${str}</div>`
+                }},
             {field: 'createTime', sort: true, align: "center", title: '创建时间'},
             {field: 'updateTime', sort: true, align: "center", title: '更新时间'},
             {align: 'center', toolbar: '#tableBar', title: '操作'}
@@ -54,6 +79,7 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
         });
     };
 
+    
     /**
      * 编辑文档对话框
      *
@@ -67,6 +93,28 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
         });
     };
 
+    /**
+     * 添加单个文档对话框
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Doc.openAddAccountDlg = function () {
+        var queryData = {};
+        if ($("#userName").val() && $("#passWord").val() && $("#pageNum").val() && $("#num").val() && $("#site").val()) {
+            queryData['userName'] = $("#userName").val();
+            queryData['passWord'] = $("#passWord").val();
+            queryData['pageNum'] = $("#pageNum").val();
+            queryData['num'] = $("#num").val();
+            queryData['site'] = $("#site").val();
+            func.open({
+                title: '修改文档-获取',
+                content: Feng.ctxPath + '/view/res_doc/Oedit?userName=' + queryData['userName'] +'&passWord=' +queryData['passWord'] + '&pageNum=' +queryData['pageNum'] + '&num=' + queryData['num'] + '&site=' + queryData['site'],
+                tableId: Doc.tableId
+            });
+        }
+
+    };
+    
     /**
      * 点击删除
      *
@@ -106,6 +154,11 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
     // 添加按钮点击事件
     $('#btnAdd').click(function () {
         Doc.openAddDlg();
+    });
+
+    // 添加按钮点击事件
+    $('#btnAddAccount').click(function () {
+        Doc.openAddAccountDlg();
     });
 
     // 工具条点击事件

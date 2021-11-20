@@ -1,6 +1,7 @@
 package cn.stylefeng.guns.modular.resource.service.impl;
 
 import cn.stylefeng.guns.modular.resource.common.httpUtils.HttpClientBase;
+import cn.stylefeng.guns.modular.resource.entity.Doc;
 import cn.stylefeng.guns.modular.resource.entity.Video;
 import cn.stylefeng.guns.modular.resource.service.OnlineService;
 import com.alibaba.fastjson.JSONObject;
@@ -25,8 +26,10 @@ import static io.restassured.RestAssured.given;
 public class OnlineServiceImpl implements OnlineService {
     public final static String PRO = "https://www.umu.cn/passport/ajax/account/login";
     public final static String PROVIDEO = "https://www.umu.cn/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=videoweike";
+    public final static String PRODOC = "https://www.umu.cn/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=docweike";
     public final static String PROCOM = "https://www.umu.com/passport/ajax/account/login";
     public final static String PROVIDEOCOM = "https://www.umu.com/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=videoweike";
+    public final static String PRODOCCOM = "https://www.umu.com/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=docweike";
     //    public final static String USERNAME = "ytest1234@qq.com";
 //    public final static String PASSWD = "qweqwe";
 
@@ -66,6 +69,43 @@ public class OnlineServiceImpl implements OnlineService {
         video.setThumbInfo(resList.get(num).get("thumb_info"));
 
         return video;
+    }
+
+    @Override
+    public Doc findPageOneDetailDoc(String userName, String passWord, Integer pageNum, Integer num, Integer mode, Integer site){
+        Doc doc = new Doc();
+        if(userName == null || userName.equals("") || userName.length()==0 || passWord == null || passWord.equals("") || passWord.length()==0){
+            return doc;
+        }
+        if(null == pageNum){pageNum = 1;}
+        if(null == mode || mode != 1){ mode = 2 ;}
+        List<Map<String,String>> resList = getResListDoc(userName,passWord,pageNum,mode,site);
+        if(resList == null || resList.size() == 0){
+            return doc;
+        }
+        if(null == num ||num >= resList.size()){
+            num = 0;
+        }
+
+        doc.setFileName(resList.get(num).get("file_name"));
+        String fileSi = resList.get(num).get("file_size");
+        Long fs = null;
+        if (fileSi != null) {
+            fs = Long.valueOf(fileSi);
+        }
+        doc.setFileSize(fs);
+
+        String fileDur = resList.get(num).get("file_duration");
+        Integer fd = null;
+        if (fileDur != null) {
+            fd = Integer.valueOf(fileDur);
+        }
+        doc.setUrl(resList.get(num).get("url"));
+        doc.setExt(resList.get(num).get("ext"));
+        doc.setThumbInfo(resList.get(num).get("thumb_info"));
+        doc.setPdfUrl(resList.get(num).get("pdf_url"));
+//        log.info(resList.get(num).get("pdf_url"));
+        return doc;
     }
 
     @Override
@@ -120,6 +160,49 @@ public class OnlineServiceImpl implements OnlineService {
         return allVideoList;
     }
 
+    @Override
+    public List<Doc> findPageDetailDoc(String userName, String passWord, Integer pageNum, Integer mode,Integer site){
+        List<Doc> allDocList = new ArrayList<>();
+
+        if(userName == null || userName.equals("") || userName.length()==0 || passWord == null || passWord.equals("") || passWord.length()==0){
+            return allDocList;
+        }
+        if(null == pageNum){pageNum = 1;}
+        if(null == mode || mode != 1){ mode = 2 ;}
+        List<Map<String,String>> resList = getResListDoc(userName,passWord,pageNum,mode,site);
+//        JSONObject jsonObject = JSONObject.parseObject(resList.get(0).toString());
+
+        if(resList == null || resList.size() == 0){
+            return allDocList;
+        }
+
+        for (Map<String, String> stringStringMap : resList) {
+            Doc doc = new Doc();
+            doc.setFileName(stringStringMap.get("file_name"));
+
+            String fileSi = stringStringMap.get("file_size");
+            Long fs = null;
+            if (fileSi != null) {
+                fs = Long.valueOf(fileSi);
+            }
+            doc.setFileSize(fs);
+
+            String fileDur = stringStringMap.get("file_duration");
+            Integer fd = null;
+            if (fileDur != null) {
+                fd = Integer.valueOf(fileDur);
+            }
+
+            doc.setUrl(stringStringMap.get("url"));
+            doc.setExt(stringStringMap.get("ext"));
+            doc.setThumbInfo(stringStringMap.get("thumb_info"));
+            doc.setPdfUrl(stringStringMap.get("pdf_url"));
+//            log.info(stringStringMap.get("pdf_url"));
+            allDocList.add(doc);
+        }
+        return allDocList;
+    }
+
     public List<Map<String,String>> getResList(String userName, String passWord, Integer pageNum, Integer mode,Integer site){
 //        if(mode==2){ url}
         String url;
@@ -135,6 +218,24 @@ public class OnlineServiceImpl implements OnlineService {
                 .then().
                 extract().
                 path("data.list");;
+        return jsonRes;
+    }
+
+    public List<Map<String,String>> getResListDoc(String userName, String passWord, Integer pageNum, Integer mode,Integer site){
+//        if(mode==2){ url}
+        String url;
+        RequestSpecification requestSpecification;
+        if(site == 2){
+            url = PRODOCCOM + "&page=" + pageNum;
+            requestSpecification = getRequestSpecification(userName,passWord,PROCOM);
+        }else {
+            url = PRODOC + "&page=" + pageNum;
+            requestSpecification = getRequestSpecification(userName,passWord,PRO);
+        }
+        List<Map<String,String>> jsonRes =RestAssured.given(requestSpecification).when().log().all().get(url)
+                .then().
+                        extract().
+                        path("data.list");;
         return jsonRes;
     }
 

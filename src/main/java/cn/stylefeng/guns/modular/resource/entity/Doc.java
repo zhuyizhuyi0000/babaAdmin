@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * 文档管理
  */
@@ -41,4 +43,19 @@ public class Doc extends BaseEntity {
     /** * 文档封面图  */
     @TableField("thumb_info")
     private String thumbInfo;
+
+    //不与数据库关联
+    @TableField(exist = false)
+    private List<Long> docTag;
+
+    //不与数据库关联
+    @TableField(exist = false)
+    private List<TagDoc> docTagList;
+
+    public List<Long> getDocTag(){
+        return docTag;
+    }
+    public void setDocTag(List<Long> docTag){
+        this.docTag = docTag;
+    }
 }

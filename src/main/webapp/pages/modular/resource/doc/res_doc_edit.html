@@ -1,7 +1,9 @@
 @layout("/layout/_form.html",{js:["/assets/modular/resource/doc/res_doc_edit.js"]}){
-
+<script src="../../../../assets/common/libs/vue-lib/vue.js"></script>
+<link rel="stylesheet" href="../../../../assets/common/libs/vue-lib/index.css">
+<script src="../../../../assets/common/libs/vue-lib/index.js"></script>
 <form class="layui-form" id="docForm" lay-filter="docForm">
-    <div class="layui-fluid" style="padding-bottom: 75px;">
+    <div class="layui-fluid" id="layui-app" style="padding-bottom: 75px;">
         <div class="layui-card">
             <div class="layui-card-body">
                 <div class="layui-form-item layui-row">
@@ -9,37 +11,85 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label layui-form-required">文档名称</label>
                         <div class="layui-input-block">
-                            <input name="fileName" placeholder="请输入文档名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                            <input name="fileName" :value="forms.fileName" placeholder="请输入文档名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label layui-form-required">文档链接</label>
                         <div class="layui-input-block">
-                            <input name="url" placeholder="请输入文档链接" type="text" class="layui-input" lay-verify="required" autocomplete="off"/>
+                            <input name="url" :value="forms.url" placeholder="请输入文档链接" type="text" class="layui-input" lay-verify="required" autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">文档大小</label>
                         <div class="layui-input-block">
-                            <input name="fileSize" placeholder="请输入文档大小(数字)" type="text" class="layui-input" autocomplete="off"/>
+                            <input name="fileSize" :value="forms.fileSize" placeholder="请输入文档大小(数字)" type="text" class="layui-input" autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">文档后缀</label>
                         <div class="layui-input-block">
-                            <input name="ext" placeholder="请输入文档后缀" type="text" class="layui-input"  autocomplete="off"/>
+                            <input name="ext" :value="forms.ext" placeholder="请输入文档后缀" type="text" class="layui-input"  autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">转码后链接</label>
                         <div class="layui-input-block">
-                            <input name="pdfUrl" placeholder="请输入文档转码链接" type="text" class="layui-input"  autocomplete="off"/>
+                            <input name="pdfUrl" :value="forms.pdfUrl" placeholder="请输入文档转码链接" type="text" class="layui-input"  autocomplete="off"/>
                         </div>
                     </div>
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">文档封面图</label>
                         <div class="layui-input-block">
-                            <input name="thumbInfo" placeholder="请输入文档封面图" type="text" class="layui-input"  autocomplete="off"/>
+                            <input name="thumbInfo" :value="forms.thumbInfo" placeholder="请输入文档封面图" type="text" class="layui-input"  autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">文档标签</label>
+                        <div class="layui-input-block">
+<!--                            <input name="videoTagList"  :value="getData()"  type="hidden"/>-->
+                            <div style="display: flex;">
+                                <div  v-for="item in tag"
+                                      style="border-radius: 10px;
+                                        box-sizing: border-box;
+                                        display: block;
+                                        font-size: 12px;
+                                        font-weight: 400;
+                                        height: 20px;
+                                        line-height: 20px;
+                                        overflow: hidden;
+                                        padding: 0 8px;
+                                        text-align: left;
+                                        background: #aecf55;
+                                        margin-right: 10px;
+                                        white-space: nowrap;">
+                                        {{item.name}}
+                                    <span style="color: #ffffff; cursor: pointer" v-on:click="deleteItem(item)">X</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">添加标签</label>
+                        <div class="layui-input-block">
+                            <el-select
+                                    v-model="value"
+                                    multiple
+                                    filterable
+                                    remote
+                                    reserve-keyword
+                                    style="width: 100%"
+                                    placeholder="请输入关键词"
+                                    :remote-method="remoteMethod"
+                                    v-on:remove-tag="removeTag"
+                                    :loading="loading">
+                                <el-option
+                                        v-for="item in tag"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
+                                </el-option>
+                            </el-select>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-@layout("/layout/_form.html",{js:["/assets/modular/resource/doc/res_doc_add.js"]}){
+@layout("/layout/_form.html",{js:["/assets/modular/resource/doc/res_doc_Oedit.js"]}){
 <script src="../../../../assets/common/libs/vue-lib/vue.js"></script>
 <link rel="stylesheet" href="../../../../assets/common/libs/vue-lib/index.css">
 <script src="../../../../assets/common/libs/vue-lib/index.js"></script>
@@ -9,7 +9,8 @@
                 <div class="layui-form-item layui-row">
                     <input name="docId" type="hidden"/>
                     <div class="layui-inline layui-col-md12">
-                        <label class="layui-form-label layui-form-required">文档名称</label>
+                        <label class="layui-form-label layui-form-required">
+                            文档名称</label>
                         <div class="layui-input-block">
                             <input name="fileName" :value="forms.fileName" placeholder="请输入文档名称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
                         </div>
@@ -47,7 +48,7 @@
                     <div class="layui-inline layui-col-md12">
                         <label class="layui-form-label">文档标签</label>
                         <div class="layui-input-block">
-<!--                            <input name="videoTagList"  :value="getData()"  type="hidden"/>-->
+<!--                            <input name="docTagList"  :value="getData()"  type="hidden"/>-->
                             <div style="display: flex;">
                                 <div  v-for="item in tag"
                                       style="border-radius: 10px;
