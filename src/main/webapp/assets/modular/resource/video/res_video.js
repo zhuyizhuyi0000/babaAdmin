@@ -135,6 +135,16 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
         Feng.confirm("是否删除?", operation);
     };
 
+    /**
+     * 点击下载
+     *
+     * @param data 点击按钮时候的行数据
+     */
+    Video.onDownloadItem = function (data) {
+        var url = data.url;
+        window.open(url);
+    };
+
     // 渲染表格
     var tableResult = table.render({
         elem: '#' + Video.tableId,
@@ -171,6 +181,8 @@ layui.use(['table', 'HttpRequest', 'func', 'form'], function () {
             Video.openEditDlg(data);
         } else if (layEvent === 'delete') {
             Video.onDeleteItem(data);
+        } else if (layEvent === 'download') {
+            Video.onDownloadItem(data);
         }
     });
 

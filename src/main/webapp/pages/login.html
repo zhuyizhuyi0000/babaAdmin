@@ -175,11 +175,11 @@
         <h2>用户登录</h2>
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-username"></i>
-            <input class="layui-input" id="account" name="account" placeholder="请输入登录账号" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
+            <input class="layui-input" id="account" name="account" value="umu" placeholder="请输入登录账号" autocomplete="off" lay-verType="tips" lay-verify="required" required/>
         </div>
         <div class="layui-form-item layui-input-icon-group">
             <i class="layui-icon layui-icon-password"></i>
-            <input class="layui-input" id="password" name="password" placeholder="请输入登录密码" type="password" lay-verType="tips" lay-verify="required" required/>
+            <input class="layui-input" id="password" name="password" value="123456" placeholder="请输入登录密码" type="password" lay-verType="tips" lay-verify="required" required/>
         </div>
         @if(security.getCaptchaOpen()){
         <div class="layui-form-item layui-input-icon-group login-captcha-group">
@@ -197,16 +197,16 @@
         <div class="layui-form-item">
             <button id="loginSubmit" class="layui-btn layui-btn-fluid" lay-filter="loginSubmit" lay-submit>登录</button>
         </div>
-        <div class="layui-form-item login-oauth-group text-center">
-            <a href="${ctxPath}/oauth/render/qq"><i class="layui-icon layui-icon-login-qq" style="color:#3492ed;"></i></a>&emsp;
-            <a href="${ctxPath}/oauth/render/gitee">
-                <img class="layui-icon" style="height: 28px;width: 28px; margin-top: -12px !important;" src="${ctxPath}/assets/expand/images/git.png"/>
-            </a>
-        </div>
+<!--        <div class="layui-form-item login-oauth-group text-center">-->
+<!--            <a href="${ctxPath}/oauth/render/qq"><i class="layui-icon layui-icon-login-qq" style="color:#3492ed;"></i></a>&emsp;-->
+<!--            <a href="${ctxPath}/oauth/render/gitee">-->
+<!--                <img class="layui-icon" style="height: 28px;width: 28px; margin-top: -12px !important;" src="${ctxPath}/assets/expand/images/git.png"/>-->
+<!--            </a>-->
+<!--        </div>-->
         </form>
 
 </div>
-<div class="login-copyright">copyright © 2020 stylefeng.cn all rights reserved.</div>
+<!--<div class="login-copyright">copyright © 2020 stylefeng.cn all rights reserved.</div>-->
 
 @/* 加入contextPath属性和session超时的配置 */
 <script type="text/javascript">

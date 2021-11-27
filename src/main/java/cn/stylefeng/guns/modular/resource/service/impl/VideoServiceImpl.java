@@ -166,6 +166,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
             List<TagLinkVideo> sumlist1 = tagLinkVideoService.findAllTagList(vidList,1);
             //            log.info("拿到tagLinkVideo的所有符合条件的集合"+sumlist1);
 
+            if(sumlist1.size()==0){return allVideoList;}
             //再把这个关联的list做一个tagid的集合，去查一遍  返回一个map<tagid,tagname>
             List<Long> tagAllList = new ArrayList<>();
             for(int a=0;a<sumlist1.size();a++){
