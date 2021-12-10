@@ -1,4 +1,4 @@
-package cn.stylefeng.guns.modular.resource.common.httpUtils;
+package cn.stylefeng.guns.modular.common.httpUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;

@@ -1,20 +1,17 @@
 package cn.stylefeng.guns.modular.resource.service.impl;
 
-import cn.stylefeng.guns.modular.resource.common.httpUtils.HttpClientBase;
+import cn.stylefeng.guns.modular.common.httpUtils.HttpClientBase;
 import cn.stylefeng.guns.modular.resource.entity.Doc;
 import cn.stylefeng.guns.modular.resource.entity.Video;
 import cn.stylefeng.guns.modular.resource.service.OnlineService;
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 

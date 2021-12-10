@@ -1,0 +1,81 @@
+2021-12-07 11:45:29.406  INFO 11986 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 7.1.1 by Redgate
+2021-12-07 11:45:29.711  INFO 11986 --- [main] o.f.c.i.database.base.DatabaseType       : Database: jdbc:mysql://172.24.200.90:3306/guns (MySQL 5.7)
+2021-12-07 11:45:29.945  INFO 11986 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 7 migrations (execution time 00:00.129s)
+2021-12-07 11:45:30.062  INFO 11986 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `guns`: 7.1.2.20210908.2000
+2021-12-07 11:45:30.062  WARN 11986 --- [main] o.f.core.internal.command.DbMigrate      : outOfOrder mode is active. Migration of schema `guns` may not be reproducible.
+2021-12-07 11:45:30.070  INFO 11986 --- [main] o.f.core.internal.command.DbMigrate      : Schema `guns` is up to date. No migration necessary.
+2021-12-07 11:45:30.396  INFO 11986 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 删除master的databaseInfo信息！删除1条！
+2021-12-07 11:45:30.542  INFO 11986 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 初始化master的databaseInfo信息！初始化1条！
+2021-12-07 11:45:30.635  INFO 11986 --- [main] cn.stylefeng.guns.GunsApplication        : Starting GunsApplication using Java 1.8.0_45 on zhuyi-macbookpro-13-01.local with PID 11986 (/Users/yizhu/IdeaProjects/babaAdmin/target/classes started by yizhu in /Users/yizhu/IdeaProjects/babaAdmin)
+2021-12-07 11:45:30.635  INFO 11986 --- [main] cn.stylefeng.guns.GunsApplication        : The following profiles are active: prod
+2021-12-07 11:45:32.469  INFO 11986 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration' of type [cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration$$EnhancerBySpringCGLIB$$ed9927f5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:45:32.483  INFO 11986 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'resourceCollectorApi' of type [cn.stylefeng.roses.kernel.scanner.DefaultResourceCollector] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:45:32.502  INFO 11986 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'scannerProperties' of type [cn.stylefeng.roses.kernel.scanner.api.pojo.scanner.ScannerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:45:32.821  INFO 11986 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-07 11:45:32.835  INFO 11986 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-07 11:45:32.835  INFO 11986 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-12-07 11:45:32.957  INFO 11986 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-07 11:45:32.958  INFO 11986 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2135 ms
+2021-12-07 11:45:34.270  INFO 11986 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-12-07 11:45:38.593  INFO 11986 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-07 11:45:39.107  INFO 11986 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-07 11:45:39.121  INFO 11986 --- [main] cn.stylefeng.guns.GunsApplication        : Started GunsApplication in 10.81 seconds (JVM running for 11.914)
+2021-12-07 11:45:39.403  INFO 11986 --- [main] c.s.r.k.i.l.TranslationDictInitListener  : 初始化所有的翻译字典96条！
+2021-12-07 11:45:46.925  INFO 11986 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-07 11:45:46.926  INFO 11986 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-07 11:45:46.929  INFO 11986 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2021-12-07 11:45:46.939  INFO 11986 --- [main] cn.stylefeng.guns.GunsApplication        : GunsApplication is success!
+2021-12-07 11:45:46.940  INFO 11986 --- [main] cn.stylefeng.guns.GunsApplication        : http://localhost:8080
+2021-12-07 11:48:23.935  INFO 11986 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-12-07 11:48:26.194  INFO 12053 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 7.1.1 by Redgate
+2021-12-07 11:48:26.506  INFO 12053 --- [main] o.f.c.i.database.base.DatabaseType       : Database: jdbc:mysql://172.24.200.90:3306/guns (MySQL 5.7)
+2021-12-07 11:48:26.692  INFO 12053 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 7 migrations (execution time 00:00.108s)
+2021-12-07 11:48:26.792  INFO 12053 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `guns`: 7.1.2.20210908.2000
+2021-12-07 11:48:26.793  WARN 12053 --- [main] o.f.core.internal.command.DbMigrate      : outOfOrder mode is active. Migration of schema `guns` may not be reproducible.
+2021-12-07 11:48:26.797  INFO 12053 --- [main] o.f.core.internal.command.DbMigrate      : Schema `guns` is up to date. No migration necessary.
+2021-12-07 11:48:27.021  INFO 12053 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 删除master的databaseInfo信息！删除1条！
+2021-12-07 11:48:27.155  INFO 12053 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 初始化master的databaseInfo信息！初始化1条！
+2021-12-07 11:48:27.225  INFO 12053 --- [main] cn.stylefeng.guns.GunsApplication        : Starting GunsApplication using Java 1.8.0_45 on zhuyi-macbookpro-13-01.local with PID 12053 (/Users/yizhu/IdeaProjects/babaAdmin/target/classes started by yizhu in /Users/yizhu/IdeaProjects/babaAdmin)
+2021-12-07 11:48:27.226  INFO 12053 --- [main] cn.stylefeng.guns.GunsApplication        : The following profiles are active: prod
+2021-12-07 11:48:29.091  INFO 12053 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration' of type [cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration$$EnhancerBySpringCGLIB$$ed9927f5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:48:29.105  INFO 12053 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'resourceCollectorApi' of type [cn.stylefeng.roses.kernel.scanner.DefaultResourceCollector] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:48:29.125  INFO 12053 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'scannerProperties' of type [cn.stylefeng.roses.kernel.scanner.api.pojo.scanner.ScannerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:48:29.511  INFO 12053 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-07 11:48:29.523  INFO 12053 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-07 11:48:29.523  INFO 12053 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-12-07 11:48:29.650  INFO 12053 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-07 11:48:29.650  INFO 12053 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2191 ms
+2021-12-07 11:48:30.256  INFO 12053 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-12-07 11:48:33.893  INFO 12053 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-07 11:48:34.248  INFO 12053 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-07 11:48:34.259  INFO 12053 --- [main] cn.stylefeng.guns.GunsApplication        : Started GunsApplication in 8.765 seconds (JVM running for 9.528)
+2021-12-07 11:48:34.447  INFO 12053 --- [main] c.s.r.k.i.l.TranslationDictInitListener  : 初始化所有的翻译字典96条！
+2021-12-07 11:48:41.024  INFO 12053 --- [main] cn.stylefeng.guns.GunsApplication        : GunsApplication is success!
+2021-12-07 11:48:41.025  INFO 12053 --- [main] cn.stylefeng.guns.GunsApplication        : http://localhost:8080
+2021-12-07 11:48:51.916  INFO 12053 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-12-07 11:49:01.243  INFO 12070 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 7.1.1 by Redgate
+2021-12-07 11:49:01.540  INFO 12070 --- [main] o.f.c.i.database.base.DatabaseType       : Database: jdbc:mysql://172.24.200.90:3306/guns (MySQL 5.7)
+2021-12-07 11:49:01.742  INFO 12070 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 7 migrations (execution time 00:00.108s)
+2021-12-07 11:49:01.844  INFO 12070 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `guns`: 7.1.2.20210908.2000
+2021-12-07 11:49:01.844  WARN 12070 --- [main] o.f.core.internal.command.DbMigrate      : outOfOrder mode is active. Migration of schema `guns` may not be reproducible.
+2021-12-07 11:49:01.854  INFO 12070 --- [main] o.f.core.internal.command.DbMigrate      : Schema `guns` is up to date. No migration necessary.
+2021-12-07 11:49:02.128  INFO 12070 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 删除master的databaseInfo信息！删除1条！
+2021-12-07 11:49:02.279  INFO 12070 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 初始化master的databaseInfo信息！初始化1条！
+2021-12-07 11:49:02.343  INFO 12070 --- [main] cn.stylefeng.guns.GunsApplication        : Starting GunsApplication using Java 1.8.0_45 on zhuyi-macbookpro-13-01.local with PID 12070 (/Users/yizhu/IdeaProjects/babaAdmin/target/classes started by yizhu in /Users/yizhu/IdeaProjects/babaAdmin)
+2021-12-07 11:49:02.344  INFO 12070 --- [main] cn.stylefeng.guns.GunsApplication        : The following profiles are active: prod
+2021-12-07 11:49:04.128  INFO 12070 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration' of type [cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration$$EnhancerBySpringCGLIB$$7a55790d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:49:04.141  INFO 12070 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'resourceCollectorApi' of type [cn.stylefeng.roses.kernel.scanner.DefaultResourceCollector] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:49:04.155  INFO 12070 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'scannerProperties' of type [cn.stylefeng.roses.kernel.scanner.api.pojo.scanner.ScannerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-07 11:49:04.420  INFO 12070 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-07 11:49:04.428  INFO 12070 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-07 11:49:04.429  INFO 12070 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-12-07 11:49:04.538  INFO 12070 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-07 11:49:04.538  INFO 12070 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1964 ms
+2021-12-07 11:49:05.218  INFO 12070 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-12-07 11:49:08.351  INFO 12070 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-07 11:49:08.772  INFO 12070 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-07 11:49:08.782  INFO 12070 --- [main] cn.stylefeng.guns.GunsApplication        : Started GunsApplication in 8.374 seconds (JVM running for 9.11)
+2021-12-07 11:49:09.006  INFO 12070 --- [main] c.s.r.k.i.l.TranslationDictInitListener  : 初始化所有的翻译字典96条！
+2021-12-07 11:49:15.746  INFO 12070 --- [main] cn.stylefeng.guns.GunsApplication        : GunsApplication is success!
+2021-12-07 11:49:15.746  INFO 12070 --- [main] cn.stylefeng.guns.GunsApplication        : http://localhost:8080
+2021-12-07 11:49:57.369  INFO 12070 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

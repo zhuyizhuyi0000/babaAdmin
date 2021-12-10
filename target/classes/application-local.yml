@@ -6,6 +6,10 @@ spring:
     username: root
     password: zhuyizhuyi0000
 
+#    url: jdbc:mysql://172.24.200.90:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=CTT&nullCatalogMeansCurrent=true
+#    username: root-pd
+#    password: dWcErvYVXAxnbhYu
+
     # 连接池大小根据实际情况调整
-    max-active: 100
-    max-pool-prepared-statement-per-connection-size: 100
+    max-active: 5
+    max-pool-prepared-statement-per-connection-size: 5

@@ -1,0 +1,29 @@
+2021-12-06 20:05:30.223  INFO 3746 --- [main] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 7.1.1 by Redgate
+2021-12-06 20:05:30.606  INFO 3746 --- [main] o.f.c.i.database.base.DatabaseType       : Database: jdbc:mysql://172.24.200.90:3306/guns (MySQL 5.7)
+2021-12-06 20:05:34.799  INFO 3746 --- [main] o.f.core.internal.command.DbValidate     : Successfully validated 7 migrations (execution time 00:04.106s)
+2021-12-06 20:05:34.902  INFO 3746 --- [main] o.f.core.internal.command.DbMigrate      : Current version of schema `guns`: 7.1.2.20210908.2000
+2021-12-06 20:05:34.903  WARN 3746 --- [main] o.f.core.internal.command.DbMigrate      : outOfOrder mode is active. Migration of schema `guns` may not be reproducible.
+2021-12-06 20:05:34.908  INFO 3746 --- [main] o.f.core.internal.command.DbMigrate      : Schema `guns` is up to date. No migration necessary.
+2021-12-06 20:05:35.187  INFO 3746 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 删除master的databaseInfo信息！删除1条！
+2021-12-06 20:05:35.319  INFO 3746 --- [main] c.s.r.k.d.p.DataBaseInfoPersistence      : 初始化master的databaseInfo信息！初始化1条！
+2021-12-06 20:05:35.375  INFO 3746 --- [main] cn.stylefeng.guns.GunsApplication        : Starting GunsApplication using Java 1.8.0_45 on zhuyi-macbookpro-13-01.local with PID 3746 (/Users/yizhu/IdeaProjects/babaAdmin/target/classes started by yizhu in /Users/yizhu/IdeaProjects/babaAdmin)
+2021-12-06 20:05:35.376  INFO 3746 --- [main] cn.stylefeng.guns.GunsApplication        : The following profiles are active: prod
+2021-12-06 20:05:37.475  INFO 3746 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration' of type [cn.stylefeng.roses.kernel.scanner.starter.GunsResourceAutoConfiguration$$EnhancerBySpringCGLIB$$5b9a94f4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-06 20:05:37.490  INFO 3746 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'resourceCollectorApi' of type [cn.stylefeng.roses.kernel.scanner.DefaultResourceCollector] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-06 20:05:37.506  INFO 3746 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'scannerProperties' of type [cn.stylefeng.roses.kernel.scanner.api.pojo.scanner.ScannerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-12-06 20:05:37.829  INFO 3746 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-06 20:05:37.841  INFO 3746 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-06 20:05:37.841  INFO 3746 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-12-06 20:05:37.970  INFO 3746 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-06 20:05:37.970  INFO 3746 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2368 ms
+2021-12-06 20:05:38.726  INFO 3746 --- [main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2021-12-06 20:05:43.915  INFO 3746 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-12-06 20:05:44.643  INFO 3746 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-06 20:05:44.659  INFO 3746 --- [main] cn.stylefeng.guns.GunsApplication        : Started GunsApplication in 15.599 seconds (JVM running for 16.79)
+2021-12-06 20:05:50.167  INFO 3746 --- [main] c.s.r.k.i.l.TranslationDictInitListener  : 初始化所有的翻译字典96条！
+2021-12-06 20:06:00.623  INFO 3746 --- [main] cn.stylefeng.guns.GunsApplication        : GunsApplication is success!
+2021-12-06 20:06:00.624  INFO 3746 --- [main] cn.stylefeng.guns.GunsApplication        : http://localhost:8080
+2021-12-06 20:06:08.288  INFO 3746 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-06 20:06:08.289  INFO 3746 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-06 20:06:08.291  INFO 3746 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-12-06 20:06:32.220  INFO 3746 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
