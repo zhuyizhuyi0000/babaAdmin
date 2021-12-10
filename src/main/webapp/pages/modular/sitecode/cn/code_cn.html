@@ -1,0 +1,65 @@
+@layout("/layout/_container.html", {js:["/assets/modular/sitecode/cn/code_cn.js"]}){
+<script src="../../../../assets/common/libs/vue-lib/vue.js"></script>
+<link rel="stylesheet" href="../../../../assets/common/libs/vue-lib/index.css">
+<script src="../../../../assets/common/libs/vue-lib/index.js"></script>
+
+
+
+<div id="code-cn">
+    <div class="layui-body-header">
+        <span class="layui-body-header-title">CN站点</span>
+    </div>
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-form toolbar">
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                    <button class="layui-btn icon-btn"  v-on:click="onSearch"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                </div>
+                                <div class="layui-inline">
+                                    给我来段文案
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <el-table
+                                    v-if="!loading"
+                                    v-for="item in tableData"
+                                    :data="item.row"
+                                    border
+                                    style="width: 100%; margin-top: 20px">
+                                <el-table-column
+                                        :label="item.label">
+                                    <el-table-column
+                                            prop="env"
+                                            label="env">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="language"
+                                            label="language">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="value"
+                                            label="value">
+                                    </el-table-column>
+                                </el-table-column>
+
+                            </el-table>
+                        </div>
+                        <div class="page-loading" v-if="loading">
+                            <div class="ball-loader">
+                                <span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@}

@@ -1,0 +1,54 @@
+@layout("/layout/_form.html",{js:["/assets/modular/sitecode/code/code_url_add.js"]}){
+
+<form class="layui-form" id="codeForm" lay-filter="codeForm">
+    <div class="layui-fluid" style="padding-bottom: 75px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-form-item layui-row">
+                    <input name="id" type="hidden"/>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">名称-仓库</label>
+                        <div class="layui-input-block">
+                            <input name="name" placeholder="名称-仓库" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">站点</label>
+                        <div class="layui-inline">
+                            <select name="site" >
+                                <option value="0">CN</option>
+                                <option value="1">COM</option>
+                                <option value="2">CO</option>
+                                <option value="3">TW</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label layui-form-required">URL</label>
+                        <div class="layui-input-block">
+                            <input name="url" placeholder="可访问的url" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">描述</label>
+                        <div class="layui-input-block">
+                            <input name="description" placeholder="描述" type="text" class="layui-input" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline layui-col-md12">
+                        <label class="layui-form-label">逻辑</label>
+                        <div class="layui-input-block">
+                            <input name="logic" placeholder="逻辑" type="text" class="layui-input" autocomplete="off"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group-bottom text-center">
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit>&emsp;提交&emsp;</button>
+        <button type="reset" class="layui-btn layui-btn-primary" ew-event="closeDialog">&emsp;取消&emsp;</button>
+    </div>
+
+</form>
+@}

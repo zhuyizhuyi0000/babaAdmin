@@ -22,8 +22,6 @@ import javax.annotation.Resource;
 public class CodeController {
     @Resource
     private CodeService codeService;
-    @Resource
-    private CNService cnService;
 
     //添加
     @PostResource(name = "添加code",path = "/code_url/add")
@@ -65,9 +63,4 @@ public class CodeController {
         return new SuccessResponseData(codeService.findPage(codeRequest));
     }
 
-    /** *test   */
-    @GetResource(name = "test查询", path = "/code_url/findPageO")
-    public ResponseData findPageDetail(String mode) {
-        return new SuccessResponseData(cnService.findPageDetail(mode));
-    }
 }
