@@ -3,7 +3,7 @@ package cn.stylefeng.guns.modular.sitecode.service.impl;
 import cn.stylefeng.guns.modular.common.httpUtils.HttpClientBase;
 import cn.stylefeng.guns.modular.sitecode.entity.Code;
 import cn.stylefeng.guns.modular.sitecode.entity.Lang;
-import cn.stylefeng.guns.modular.sitecode.service.CNService;
+import cn.stylefeng.guns.modular.sitecode.service.COService;
 import cn.stylefeng.guns.modular.sitecode.service.CodeService;
 import io.leopard.javahost.JavaHost;
 import io.restassured.RestAssured;
@@ -14,28 +14,24 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /** * code业务实现层   */
 @Slf4j
 @Service
-public class CNServiceImpl implements CNService {
-    public final static String PRO = "https://www.umu.cn/passport/ajax/account/login";
-    public final static String PROVIDEO = "https://www.umu.cn/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=videoweike";
-    public final static String PRODOC = "https://www.umu.cn/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=docweike";
-    public final static String PROCOM = "https://www.umu.com/passport/ajax/account/login";
-    public final static String PROVIDEOCOM = "https://www.umu.com/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=videoweike";
-    public final static String PRODOCCOM = "https://www.umu.com/ajax/resource/getresourcelist?is_recycle=0&search_keyword=&page_rows=15&order_by=create_time&is_desc=1&media_type=docweike";
+public class COServiceImpl implements COService {
+    public final static String PRO = "https://www.umu.co/passport/ajax/account/login";
     public final static String USERNAME1 = "ytestcode001@umu.com";
     public final static String USERNAME2 = "ytestcode002@umu.com";
-    public final static String USERNAME3 = "ytestcode006@umu.com";
-    public final static String USERNAME4 = "ytestcode007@umu.com";
+    public final static String USERNAME3 = "ytestcode003@umu.com";
+    public final static String USERNAME4 = "ytestcode004@umu.com";
     public final static String PASSWD = "123123";
-    public final static String PROCHANGE = "https://www.umu.cn/api/user/updatesetup";
-    public final static String ONLINEIP="152.136.248.130";
-    public final static String PREIP="81.70.88.72";
+    public final static String PROCHANGE = "https://www.umu.co/api/user/updatesetup";
 
     @Resource
     private CodeService codeService;
@@ -43,7 +39,7 @@ public class CNServiceImpl implements CNService {
     @Override
     public Map<String,List<Lang>> findPageDetail(String mode){
         Map<String,List<Lang>> langListMap= new LinkedHashMap<>();
-        String site = "0"; //CN
+        String site = "2"; //CO
         List<Code> codeList = codeService.findCodeList(site);
         if(codeList.size() == 0){
             return langListMap;
@@ -73,24 +69,21 @@ public class CNServiceImpl implements CNService {
 //        log.info(codeList.toString());
 //        log.info("===========");
 
-        //pro
-        JavaHost.updateVirtualDns("www.umu.cn",ONLINEIP);
-        JavaHost.updateVirtualDns("m.umu.cn",ONLINEIP);
-        //cn-cn pro
+        //jp-jp pro
         RequestSpecification requestSpecification;
         requestSpecification = getRequestSpecification(USERNAME1,PASSWD,PRO);
 
         //重置语言
         Map<String, String> par = new LinkedHashMap<>();
         par.put("option_type", "7");
-        par.put("option_value", "zh-cn");
+        par.put("option_value", "ja-jp");
         RestAssured.given(requestSpecification).params(par).when().log().all().post(PROCHANGE);
 
         for (Code code : codeList) {
             Lang lang = new Lang();
             lang.setName(code.getName());
-            lang.setSite("CN");
-            lang.setLanguage("cn");
+            lang.setSite("CO");
+            lang.setLanguage("jp");
             lang.setEnv("PRO");
             String url = code.getUrl();
             String siteCode = RestAssured.given(requestSpecification).when().log().all().get(url).asString();
@@ -99,7 +92,7 @@ public class CNServiceImpl implements CNService {
             ListCode.add(lang);
         }
 
-        //cn-en pro
+        //jp-en pro
         RequestSpecification requestSpecification1;
         requestSpecification1 = getRequestSpecification(USERNAME2,PASSWD,PRO);
 
@@ -112,7 +105,7 @@ public class CNServiceImpl implements CNService {
         for (Code code : codeList) {
             Lang lang = new Lang();
             lang.setName(code.getName());
-            lang.setSite("CN");
+            lang.setSite("CO");
             lang.setLanguage("en");
             lang.setEnv("PRO");
             String url = code.getUrl();
@@ -122,21 +115,21 @@ public class CNServiceImpl implements CNService {
             ListCode.add(lang);
         }
 
-        //cn-cn canary
+        //co-co canary
         RequestSpecification requestSpecification3;
         requestSpecification3 = getRequestSpecification(USERNAME3,PASSWD,PRO);
 
         //重置语言
         Map<String, String> par3 = new LinkedHashMap<>();
         par3.put("option_type", "7");
-        par3.put("option_value", "zh-cn");
+        par3.put("option_value", "ja-jp");
         RestAssured.given(requestSpecification3).params(par3).when().log().all().post(PROCHANGE);
 
         for (Code code : codeList) {
             Lang lang = new Lang();
             lang.setName(code.getName());
-            lang.setSite("CN");
-            lang.setLanguage("cn");
+            lang.setSite("CO");
+            lang.setLanguage("jp");
             lang.setEnv("CANARY");
             String url = code.getUrl();
             String siteCode = RestAssured.given(requestSpecification3).when().log().all().get(url).asString();
@@ -145,7 +138,7 @@ public class CNServiceImpl implements CNService {
             ListCode.add(lang);
         }
 
-        //cn-en canary
+        //co-en canary
         RequestSpecification requestSpecification4;
         requestSpecification4 = getRequestSpecification(USERNAME4,PASSWD,PRO);
 
@@ -158,7 +151,7 @@ public class CNServiceImpl implements CNService {
         for (Code code : codeList) {
             Lang lang = new Lang();
             lang.setName(code.getName());
-            lang.setSite("CN");
+            lang.setSite("CO");
             lang.setLanguage("en");
             lang.setEnv("CANARY");
             String url = code.getUrl();
@@ -169,17 +162,15 @@ public class CNServiceImpl implements CNService {
         }
 
         //pre
-        JavaHost.updateVirtualDns("www.umu.cn",PREIP);
-        JavaHost.updateVirtualDns("m.umu.cn",PREIP);
-        //cn-cn pre
+        //co-co pre
         for (Code code : codeList) {
             Lang lang = new Lang();
             lang.setName(code.getName());
-            lang.setSite("CN");
-            lang.setLanguage("cn");
+            lang.setSite("CO");
+            lang.setLanguage("jp");
             lang.setEnv("PRE");
             String url = code.getUrl();
-            String siteCode = RestAssured.given(requestSpecification).when().log().all().get(url).asString();
+            String siteCode = RestAssured.given(requestSpecification).header("umu-eid","pre").when().log().all().get(url).asString();
             String checkCode = getCode(siteCode, code.getLogic());
             lang.setValue(checkCode);
             ListCode.add(lang);
@@ -189,11 +180,11 @@ public class CNServiceImpl implements CNService {
         for (Code code : codeList) {
             Lang lang = new Lang();
             lang.setName(code.getName());
-            lang.setSite("CN");
+            lang.setSite("CO");
             lang.setLanguage("en");
             lang.setEnv("PRE");
             String url = code.getUrl();
-            String siteCode = RestAssured.given(requestSpecification1).when().log().all().get(url).asString();
+            String siteCode = RestAssured.given(requestSpecification1).header("umu-eid","pre").when().log().all().get(url).asString();
             String checkCode = getCode(siteCode, code.getLogic());
             lang.setValue(checkCode);
             ListCode.add(lang);
