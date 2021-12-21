@@ -34,7 +34,6 @@ public class testStart {
 
         Response response1 = given().cookies(new HttpClientBase().doPost(USERNAME1,PASSWD,PRO)).when().log().all().get("https://www.umu.cn/course/index#/groups");
 
-
         //        System.out.println(response1.getCookies());
 //        System.out.println(response1.getHeaders());
         System.out.println(response1.asString());

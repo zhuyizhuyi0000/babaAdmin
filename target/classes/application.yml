@@ -6,7 +6,7 @@ spring:
   application:
     name: guns
   profiles:
-    active: local
+    active: prod
   mvc:
     view:
       prefix: /pages

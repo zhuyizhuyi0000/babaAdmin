@@ -1,0 +1,142 @@
+@layout("/layout/_container.html", {js:["/assets/modular/sitecode/cn/code_cn.js"]}){
+<script src="../../../../assets/common/libs/vue-lib/vue.js"></script>
+<link rel="stylesheet" href="../../../../assets/common/libs/vue-lib/index.css">
+<script src="../../../../assets/common/libs/vue-lib/index.js"></script>
+
+
+
+<div id="time-backtime">
+    <div class="layui-body-header">
+        <span class="layui-body-header-title">日期倒计时</span>
+    </div>
+    <link rel="stylesheet" type="text/css" href="css/2018.css" />
+    <style>
+        #wrap{margin:50px auto; width:600px;height:230px;border:0px solid #0EA9B1;border-radius: 10px;color:#000;padding-bottom:0px;}
+        #wrap .title{text-align: center;height:80px;line-height: 80px;font-size: 30px;}
+        #wrap .end_wrap{width: 280px;margin: 10px auto;}
+        #wrap ul{list-style: none;padding-left:60px;}
+        #wrap ul li.time{height: 50px; line-height: 50px; float:left;text-align: center;font-size: 40px;color:red;margin:0px 6px 0px 6px;}
+        #wrap ul li.info{height: 50px; line-height: 50px;float:left; width:20px; text-align: center;}
+        #wrap .submit{width:80px;height:32px; background:#0E727C;color:#fff;}
+        .t_info{height:30px;line-height:30px;margin:10px;}
+        .ts{font-size:13px;color:green;width:100%;text-align:center;margin-top:30px;}
+        .clear{ zoom:1;clear:both; float:none;}
+        .time-item strong{background:#C71C60;color:#fff;line-height:49px;font-size:36px;font-family:Arial;padding:0 10px;margin-right:10px;border-radius:5px;box-shadow:1px 1px 3px rgba(0,0,0,0.2);}
+    </style>
+
+    </head>
+
+    <body onload='test()'>
+
+    <div id="xiaodiv">
+
+
+            <div align="center" id="wrap">
+                <div class="end_wrap" style="width:500px;">
+
+                        <span>结束时间：</span><input id="edtime" name="edtime" type="datetime" value="2022-03-14 22:15:12" style="padding:5px;"><input class="submit" type="submit" value="开始计时" onclick="test1()">
+
+                </div>
+                <div style="margin:40px 0px 10px 0px;"><hr color="#0EA9B1" width="600" size="1"></div>
+
+                <div class="time-item">
+                    <div class="t_info">距离当前时间还有：</div>
+
+                    <strong id="d">0天</strong>
+                    <strong id="h">0时</strong>
+                    <strong id="i">0分</strong>
+                    <strong id="s">0秒</strong>
+                </div>
+
+                <div class="ts"><b>日期计算器：</b>可以根据指定日期和时间，计算距离当前时间还有多少天、小时、分钟和秒。<br></div>
+            </div>
+            <script>
+                var id = 0;
+                var id1 = 0;
+                function test(){
+                    // 当前时间
+                    var nowTime = new Date().getTime();
+                    // 2016/12/22 hh:mm:ee
+                    // 结束时间
+
+                    var endTime = new Date('2022-03-14 22:15:12');
+
+                    // 相差的时间
+                    var t = endTime.getTime() - nowTime;
+                    if(t<=0){
+                        alert('设定时间已过，请重新输入');
+                        return false;
+                    }
+                    var d = Math.floor(t/1000/60/60/24);
+                    var h = Math.floor(t/1000/60/60%24);
+                    var i = Math.floor(t/1000/60%60);
+                    var s = Math.floor(t/1000%60);
+                    document.getElementById('d').innerHTML = d+"天";
+                    document.getElementById('h').innerHTML = h+"时";
+                    document.getElementById('i').innerHTML = i+"分";
+                    document.getElementById('s').innerHTML = s+"秒";
+                    id = setTimeout(test, 1000);
+                }
+                function test1(){
+                    // 当前时间
+                    var nowTime = new Date().getTime();
+                    var edtime = document.getElementById('edtime');
+                    var value =  edtime.value;
+                    // 结束时间
+
+                    var endTime = new Date(value);
+
+                    // 相差的时间
+                    var t = endTime.getTime() - nowTime;
+                    if(t<=0){
+                        alert('设定时间已过，请重新输入');
+                        return false;
+                    }
+                    clearTimeout((id))
+                    clearTimeout(id1)
+                    var d = Math.floor(t/1000/60/60/24);
+                    var h = Math.floor(t/1000/60/60%24);
+                    var i = Math.floor(t/1000/60%60);
+                    var s = Math.floor(t/1000%60);
+                    document.getElementById('d').innerHTML = d+"天";
+                    document.getElementById('h').innerHTML = h+"时";
+                    document.getElementById('i').innerHTML = i+"分";
+                    document.getElementById('s').innerHTML = s+"秒";
+                    var id1 = setTimeout(test1, 1000);
+                }
+                function addBookMark(){
+                    var t="倒计时";
+                    var url="http://jishi.00cha.net/rqdjs.asp";
+                    try{
+                        window.external.addFavorite(url,t);
+                    }catch (e){
+                        try{
+                            window.sidebar.addPanel(t, url, "");
+                        }catch (e){
+                            alert("加入收藏失败，请使用Ctrl+D进行添加");
+                        }
+                    }
+                }
+            </script>
+
+
+
+        </div>
+        <div style="text-align:left;">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- net000 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5101993353395713"
+                 data-ad-slot="2514923793"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+
+</div>
+
+@}
